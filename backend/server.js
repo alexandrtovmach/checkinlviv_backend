@@ -11,9 +11,19 @@ const bodyParser = require('body-parser'),
 	port = 4000;
 
 const app = express();
-app.use(cors({
-	origin: 'http://gidy.lviv.ua'
-}))
+
+const whitelist = ['http://gidy.lviv.ua', 'http://localhost:4200']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.includes(origin)) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions))
+
 // empty arrays don't throw 404 response error
 apiResponse.options({
 	emptyArrayIsOk: true
