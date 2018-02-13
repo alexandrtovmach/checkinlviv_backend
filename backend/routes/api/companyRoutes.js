@@ -1,9 +1,7 @@
 const apiResponse = require('express-api-response'),
     companyService = require('../../services/companyService'),
     companyRepository = require('../../repositories/companyRepository'),
-    baseUrl = '/api/company/',
-    isAdmin = require('../../middleware/isAdminMiddleware'),
-    isLoggedIn = require('../../middleware/isLoggedInMiddleware');
+    baseUrl = '/api/company/';
 
 module.exports = function (app) {
 

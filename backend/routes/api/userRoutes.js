@@ -1,13 +1,11 @@
 const apiResponse = require('express-api-response'),
 	userService = require('../../services/userService'),
 	userRepository = require('../../repositories/userRepository'),
-	baseUrl = '/api/user/',
-	isAdmin = require('../../middleware/isAdminMiddleware'),
-	isLoggedIn = require('../../middleware/isLoggedInMiddleware');
+	baseUrl = '/api/user/';
 
 module.exports = function (app) {
 
-	app.get(baseUrl + 'me', isLoggedIn, function (req, res, next) {
+	app.get(baseUrl + 'me', function (req, res, next) {
 		userRepository.getById(req.session.passport.user, function (err, data) {
 			res.data = data;
 			res.err = err;
@@ -15,7 +13,7 @@ module.exports = function (app) {
 		});
 	}, apiResponse);
 
-	app.get(baseUrl, isLoggedIn, function (req, res, next) {
+	app.get(baseUrl, function (req, res, next) {
 		userRepository.getAll(function (err, data) {
 			res.data = data;
 			res.err = err;
@@ -49,7 +47,7 @@ module.exports = function (app) {
 		});
 	}, apiResponse);
 
-	app.delete(baseUrl + ':id', isAdmin, function (req, res, next) {
+	app.delete(baseUrl + ':id', function (req, res, next) {
 		userRepository.deleteById(req.params.id, function (err, data) {
 			res.data = data;
 			res.err = err;

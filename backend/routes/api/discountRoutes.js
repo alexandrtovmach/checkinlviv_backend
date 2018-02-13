@@ -2,10 +2,7 @@ const apiResponse = require('express-api-response'),
     discountService = require('../../services/discountService'),
     discountRepository = require('../../repositories/discountRepository'),
     userService = require('../../services/userService'),
-    baseUrl = '/api/discount/',
-    isAdmin = require('../../middleware/isAdminMiddleware'),
-    isLoggedIn = require('../../middleware/isLoggedInMiddleware');
-
+    baseUrl = '/api/discount/';
 module.exports = function (app) {
 
     app.get(baseUrl, function (req, res, next) {

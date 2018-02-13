@@ -3,7 +3,10 @@ var Schema = mongoose.Schema;
 
 var bannersSchema = new Schema({
     name: String,
-    bg: String
+    image: String,
+    page: String,
+    position: Number,
+    order: Number
 });
 
 module.exports = mongoose.model('Banners', bannersSchema);

@@ -33,9 +33,7 @@ firebase.init();
 mongodb.init();
 
 app.all('*', (req, res, next) => {
-	if (!req.url.includes('/dist')) {
-	  console.log('\n\n===url===\n', req.url, '\n===url===\n\n')
-	}
+	console.log('\n\n===url===\n', req.method, req.url, '\n===url===\n\n')
 	next()
 })
 
@@ -44,9 +42,6 @@ app.all('*', (req, res, next) => {
 // 	next()
 // })
 
-
-app.use('/dist', express.static(path.resolve(__dirname + '/../dist')));
-app.use('/resources', express.static(path.resolve(__dirname + '/../resources')));
 app.use('/langpack', express.static(path.resolve(__dirname + '/../localization')));
 
 app.use(bodyParser.json({limit: '50mb'}));
@@ -54,7 +49,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 const apiRoutes = require('./routes/api/routes')(app);
-const viewRoutes = require('./routes/view/routes')(app);
 
 const config = require('./config');
 const server = app.listen(port);

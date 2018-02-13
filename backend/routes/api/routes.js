@@ -1,8 +1,9 @@
 module.exports = function (app) {
     return {
         userRoutes: require('./userRoutes')(app),
-        categoryRoutes: require('./companyRoutes')(app),
+        companyRoutes: require('./companyRoutes')(app),
         discountRoutes: require('./discountRoutes')(app),
-        discountRoutes: require('./categoryRoutes')(app),
+        categoryRoutes: require('./categoryRoutes')(app),
+        bannersRoutes: require('./bannersRoutes')(app),
     };
 };
